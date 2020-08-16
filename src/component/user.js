@@ -4,7 +4,7 @@ import Data from "../Data/Test JSON.json";
 import "antd/dist/antd.css";
 import Modal from "antd/lib/modal/Modal";
 import moment from "moment";
-import { Table, Calendar, Radio, Checkbox ,Badge} from "antd";
+import { Table, Calendar, Radio, Checkbox} from "antd";
 const { Column } = Table;
 class User extends React.Component {
   constructor(props) {
@@ -17,12 +17,18 @@ class User extends React.Component {
       fitToScreen:true
     };
   }
+
+
+  //this function is called when user list is clicked
+
   handleClick = (p) => {
     var var_activityPeriod = [];
     this.setState({ isVisible: true });
+    // eslint-disable-next-line array-callback-return
     Data.members.map((i) => {
       if (i.id === p) {
         this.setState({ name: i.real_name });
+        // eslint-disable-next-line array-callback-return
         i.activity_periods.map((ap) => {
           var_activityPeriod.push(ap);
         });
@@ -33,6 +39,7 @@ class User extends React.Component {
     });
   };
 
+  //this function is called to display activity time inside modal
   contentDOM = () => {
     var x = this.state.activityPeriod[0];
     return (
@@ -43,10 +50,12 @@ class User extends React.Component {
     );
   };
 
+  //this method returns listdata to display inside calendar
   getListData =(value)=> {
     let listData;
     let date = this.state.activityPeriod[0];
     if(date !== undefined){
+    // eslint-disable-next-line array-callback-return
     date.map((v)=>{
         if(moment(v.start_time,"lll").format('ll') === moment(value).format('ll'))
         {
@@ -55,7 +64,6 @@ class User extends React.Component {
                 {content: time }
               ];
         }
-        
     })
     }
         
@@ -63,6 +71,7 @@ class User extends React.Component {
     return listData || [];
   }
   
+  //displays list content inside calender cell
    dateCellRender=(value)=> {
     const listData = this.getListData(value);
     return (
@@ -75,7 +84,7 @@ class User extends React.Component {
   }
   
   
-  
+  //function is called to display calender inside modal
   calenderDOM = () => {
     return <Calendar dateCellRender={this.dateCellRender} fullscreen={!this.state.fitToScreen}/>;
   };
@@ -100,6 +109,8 @@ class User extends React.Component {
             })}
           </div>
         </div>
+
+        
         <Modal
           title={<h4>Name : {this.state.name}</h4>}
           footer={
@@ -135,6 +146,8 @@ class User extends React.Component {
             <div className="modalDiv">{this.contentDOM()}</div>
           )}
         </Modal>
+
+
       </div>
     );
   }

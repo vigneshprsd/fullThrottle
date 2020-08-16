@@ -1,4 +1,4 @@
-
+/*css for main conianer of user list*/
 .container{
   background-color: rgb(238, 247, 246);
   width: 50%;
@@ -35,14 +35,12 @@
 }
 
 
-.ant-modal-content{
-}
-
+/*height property for Modal*/
 .ant-modal-body{
-  min-height: 60vh;
+min-height: 60vh;
 max-height: 60vh;
-
 }
+
 .modalDiv{
   margin: 0;
   height: 400px;
@@ -55,7 +53,8 @@ max-height: 60vh;
 .ant-picker-cell{
   border: 1px solid rgb(223, 220, 220);
 }
-/*Scroll*/
+
+/*Scroll css*/
 ::-webkit-scrollbar {
   width: 8px;
   
@@ -94,9 +93,6 @@ max-height: 60vh;
     width: 100%;
   }
   .list-container{
-    
     width: 100%;
-  
-  
   }
 }
